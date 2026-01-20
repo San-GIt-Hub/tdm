@@ -1,0 +1,68 @@
+# Configuración de anonimización
+
+# Configuración general
+general:
+  locale: es_ES
+  output_format: json
+  log_level: INFO
+
+# Reglas de detección
+detection:
+  patterns:
+    email:
+      pattern: '\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+      enabled: true
+    
+    phone:
+      pattern: '\b\d{3}[-.]?\d{3}[-.]?\d{4}\b'
+      enabled: true
+    
+    ssn:
+      pattern: '\b\d{3}-\d{2}-\d{4}\b'
+      enabled: true
+    
+    credit_card:
+      pattern: '\b\d{4}[-\s]?\d{4}[-\s]?\d{4}[-\s]?\d{4}\b'
+      enabled: true
+
+# Reglas de anonimización
+anonymization:
+  default_method: pseudonymize
+  
+  rules:
+    - field: email
+      type: email
+      method: pseudonymize
+      
+    - field: phone
+      type: phone
+      method: mask
+      params:
+        visible_chars: 4
+    
+    - field: name
+      type: name
+      method: pseudonymize
+    
+    - field: ssn
+      type: ssn
+      method: hash
+      params:
+        algorithm: sha256
+
+# Configuración de datos sintéticos
+synthetic_data:
+  sample_size: 1000
+  fault_injection_rate: 0.05
+  
+  generators:
+    person:
+      - name
+      - email
+      - phone
+      - address
+    
+    company:
+      - company_name
+      - company_email
+      - tax_id
