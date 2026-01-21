@@ -13,6 +13,7 @@ TEST_FILES = [
     "test_validators_ec.py",
     "test_detector.py",
     "test_anonymizer.py",
+    "test_scanner.py",  # Test de integración (scanner)
     "test_cliente_generator.py",
 ]
 
