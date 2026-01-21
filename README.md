@@ -4,7 +4,7 @@ Sistema completo de Test Data Management (TDM) que implementa dos desafíos prin
 1. **Anonimización determinística** de datos sensibles con detección probabilística
 2. **Generación de datos sintéticos** con inyección controlada de fallas y validación determinística
 
-## 📋 Descripción
+##  Descripción
 
 Este proyecto cumple con los requisitos de ambos desafíos técnicos para el rol de Coordinador TDM, proporcionando:
 
@@ -23,7 +23,7 @@ Este proyecto cumple con los requisitos de ambos desafíos técnicos para el rol
 - ✅ Reportes completos de calidad y trazabilidad
 - ✅ Salidas en CSV y JSON versionadas por fecha y seed
 
-## 🏗️ Estructura del Proyecto
+## Estructura del Proyecto
 
 ```
 tdm_anonimizacion/
@@ -57,7 +57,7 @@ tdm_anonimizacion/
 └── requirements.txt           # Dependencias
 ```
 
-## 🚀 Instalación
+## Instalación
 
 ### 1. Clonar el repositorio
 ```bash
@@ -84,7 +84,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## 📊 Uso - Desafío de Datos Sintéticos
+## Uso - Desafío de Datos Sintéticos
 
 ### Ejecución Rápida
 ```bash
@@ -146,7 +146,7 @@ reports/validation_report_<timestamp>_seed<N>.json # Reporte de validación
 reports/injection_log_<timestamp>_seed<N>.json    # Log de inyección
 ```
 
-## 🔒 Uso - Desafío de Anonimización
+## Uso - Desafío de Anonimización
 
 ### Ejecución Rápida
 ```bash
@@ -199,7 +199,7 @@ datos_anonimizados = anonymizer.anonymize_dataset(datos, engine)
 - ✅ **Validez**: Datos anonimizados pasan validaciones (cédulas válidas)
 - ✅ **Integridad referencial**: Correlación entre ejecuciones
 
-## 🧪 Validadores Ecuatorianos
+## Validadores Ecuatorianos
 
 ### Cédula
 ```python
@@ -260,7 +260,7 @@ es_valido = validator.validar_ruc_empresa(ruc_emp)
 }
 ```
 
-## ⚙️ Configuración
+## Configuración
 
 ### Parámetros Principales
 
@@ -287,7 +287,7 @@ faker>=40.0.0       # Generación de datos sintéticos
 pyyaml>=6.0.0       # Lectura de configuración
 ```
 
-## 📝 Entregables del Proyecto
+## Entregables del Proyecto
 
 - ✅ **Repositorio Git**: Código fuente versionado
 - ✅ **README**: Instrucciones completas (este archivo)
@@ -296,7 +296,7 @@ pyyaml>=6.0.0       # Lectura de configuración
 - ⏳ **Arquitectura**: Diagramas en `/diagrams`
 - ⏳ **Presentación**: PDF/PPTX para foro técnico
 
-## 🎯 Casos de Uso
+## Casos de Uso
 
 ### 1. Generar dataset de prueba limpio
 ```bash
@@ -337,7 +337,7 @@ if reporte['porcentaje_cumplimiento'] < 95:
     print("⚠️ Datos no cumplen estándar de calidad")
 ```
 
-## 🧪 Testing
+## Testing
 
 ### Ejecutar demo completo
 ```bash
@@ -364,11 +364,11 @@ c2 = gen2.generate_cliente(1)
 assert c1 == c2, "No determinista!"
 ```
 
-## 📧 Contacto
+## Contacto
 
 Para preguntas o sugerencias sobre este proyecto, por favor abre un issue en el repositorio.
 
-## 📄 Licencia
+## Licencia
 
 Este proyecto está bajo la Licencia MIT.
 

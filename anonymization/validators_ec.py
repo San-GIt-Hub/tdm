@@ -111,7 +111,7 @@ class EcuadorValidators:
             if ruc[10:13] != '001':
                 return False
             
-            # Algoritmo módulo 11
+            # Algoritmo módulo 11 (sobre 9 dígitos: 2 provincia + 1 tipo + 6 secuencial)
             coeficientes = [4, 3, 2, 7, 6, 5, 4, 3, 2]
             suma = 0
             
@@ -202,12 +202,19 @@ class EcuadorValidators:
         if provincia < 1 or provincia > 24:
             provincia = 17  # Pichincha por defecto
         
-        # Formato: PP9XXXXXXD001 (PP=provincia, 9=empresa, X=random, D=dígito verificador)
+        # Formato RUC Empresa: PP 9 XXXXXX V 001
+        # PP = Provincia (2 dígitos)
+        # 9 = Tipo empresa (1 dígito)
+        # XXXXXX = Secuencial (6 dígitos)
+        # V = Verificador (1 dígito)
+        # 001 = Establecimiento (3 dígitos)
+        # Total: 2 + 1 + 6 + 1 + 3 = 13 dígitos
+        
         ruc_base = f"{provincia:02d}9"
         for _ in range(6):
             ruc_base += str(random_gen.randint(0, 9))
         
-        # Calcular dígito verificador con módulo 11
+        # Calcular dígito verificador con módulo 11 (sobre 9 dígitos: 2+1+6)
         coeficientes = [4, 3, 2, 7, 6, 5, 4, 3, 2]
         suma = 0
         
