@@ -9,7 +9,7 @@ from .validators_ec import EcuadorValidators
 class SensitiveDataDetector:
     """Detecta tipos específicos de datos sensibles con cálculo de probabilidad."""
     
-    def __init__(self, threshold=0.90):
+    def __init__(self, threshold=0.80):
         """
         Inicializa el detector.
         

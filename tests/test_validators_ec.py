@@ -2,11 +2,13 @@
 Tests para validadores de Ecuador
 """
 import sys
+import os
 from pathlib import Path
 
 # Agregar el directorio raíz al path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
+from anonymization.anonymizer import DataAnonymizer
 from anonymization.validators_ec import EcuadorValidators
 
 # Crear alias para facilitar uso
@@ -101,6 +103,56 @@ def test_generar_ruc_empresa():
     print("✓ Test generar_ruc_empresa: PASS")
 
 
+def test_guardar_resultados_anonimizacion():
+	"""Anonimiza registros de ejemplo y guarda archivos de salida (JSON y CSV)."""
+	# Crear instancia de anonimizador
+	anonymizer = DataAnonymizer(master_seed=42)
+	
+	# Datos de ejemplo
+	datos_originales = [
+		{
+			'nombre': 'Juan Pérez',
+			'email': 'juan.perez@email.com',
+			'telefono': '0987654321',
+			'cedula': '1710034065',
+			'ruc_natural': '1710034065001',
+			'ruc_empresa': '1790016919001',
+			'direccion': 'Av. Amazonas N24-03'
+		},
+		{
+			'nombre': 'María González',
+			'email': 'maria.gonzalez@gmail.com',
+			'telefono': '0998765432',
+			'cedula': '0926687856',
+			'ruc_natural': '0926687856001',
+			'ruc_empresa': '1791234567001',
+			'direccion': 'Calle 10 de Agosto S1-70'
+		}
+	]
+	
+	datos_anonimizados = []
+	for registro in datos_originales:
+		anon = {
+			'nombre': anonymizer.pseudonymize(registro['nombre'], 'name'),
+			'email': anonymizer.pseudonymize(registro['email'], 'email'),
+			'telefono': anonymizer.pseudonymize(registro['telefono'], 'telefono'),
+			'cedula': anonymizer.pseudonymize(registro['cedula'], 'cedula'),
+			'ruc_natural': anonymizer.pseudonymize(registro['ruc_natural'], 'ruc_natural'),
+			'ruc_empresa': anonymizer.pseudonymize(registro['ruc_empresa'], 'ruc_empresa'),
+			'direccion': anonymizer.pseudonymize(registro['direccion'], 'address')
+		}
+		datos_anonimizados.append(anon)
+	
+	# Guardar ambos conjuntos en salida (JSON + CSV)
+	created = anonymizer.save_comparison(datos_originales, datos_anonimizados, formats=('json','csv'))
+	
+	# Comprobar que los archivos existen
+	for ruta in created:
+		assert Path(ruta).exists(), f"Archivo de salida no creado: {ruta}"
+	
+	print("✓ Test guardar_resultados_anonimizacion: PASS (archivos creados)")
+
+
 if __name__ == "__main__":
     print("\n" + "="*60)
     print("EJECUTANDO TESTS DE VALIDADORES ECUADOR")
@@ -114,6 +166,7 @@ if __name__ == "__main__":
         test_generar_ruc_natural()
         test_validar_ruc_empresa()
         test_generar_ruc_empresa()
+        test_guardar_resultados_anonimizacion()
         
         print("\n" + "="*60)
         print("✅ TODOS LOS TESTS PASARON EXITOSAMENTE")

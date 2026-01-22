@@ -163,7 +163,10 @@ print(f"Cumplimiento: {reporte['porcentaje_cumplimiento']}%")
 - `nombre`: Nombre sintético
 - `apellido`: Apellido sintético
 - `cedula`: Cédula ecuatoriana válida
-- `f🚀 Ejecución Rápida (Recomendado)
+- `f`
+```
+
+### Ejecución Rápida (Recomendado)
 ```bash
 cd anonymization
 python demo_anonymization.py
@@ -386,7 +389,8 @@ pyyaml>=6.0.0       # Lectura de configuración
 cd synthetic_data
 python -c "
 from cliente_generator import ClienteGenerator
-gen🧪 Testing
+gen"
+```
 
 ### Ejecutar Suite Completa de Tests
 ```bash
@@ -443,32 +447,6 @@ python demo_scanner.py
 ```python
 # Dos ejecuciones con misma semilla deben dar mismo resultado
 from anonymization.scanner import DataScanner
-🚀 Inicio Rápido
-
-### 1. Instalar y configurar
-```bash
-git clone <url-del-repositorio>
-cd tdm_anonimizacion
-python -m venv venv
-.\venv\Scripts\Activate.ps1  # Windows
-pip install -r requirements.txt
-```
-
-### 2. Ejecutar tests completos
-```bash
-python tests/run_all_tests.py
-```
-
-### 3. Ver demos con validaciones
-```bash
-# Anonimización (7 requisitos validados)
-python anonymization/demo_anonymization.py
-
-# Datos sintéticos (10 requisitos validados)
-python synthetic_data/demo_synthetic_data.py
-
-# Scanner completo (6 ejemplos)
-python anonymization/demo_scanner.py
 ```
 
 ## 📊 Métricas del Proyecto

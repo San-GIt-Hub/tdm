@@ -18,17 +18,17 @@ class DataScanner:
     Cumple con el alcance funcional:
     - Identificación por columna mediante muestreo con cálculo de probabilidad
     - Tipos soportados: Cédula, RUC empresa, RUC natural, Teléfono, Email
-    - Umbral configurable (por defecto 90%)
+    - Umbral configurable (por defecto 80%)
     - Anonimización determinística preservando formato y validez
     """
     
-    def __init__(self, threshold=0.90, seed=None):
+    def __init__(self, threshold=0.80, seed=None):
         """
         Inicializa el escáner de datos.
         
         Args:
             threshold: Umbral de probabilidad para detectar campos sensibles (0.0-1.0)
-                      Por defecto 90% según alcance funcional
+                      Por defecto 80% según alcance funcional
             seed: Semilla para anonimización determinística
         """
         self.threshold = threshold
